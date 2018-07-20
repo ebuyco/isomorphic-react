@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "cross-env": "^5.2.0",
+    "express": "^4.16.3",
     "webpack": "^4.16.1"
   },
   "devDependencies": {
@@ -15,6 +16,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-regenerator-runtime": "^6.5.0",
+    "express-yields": "^1.1.2",
+    "fs-extra": "^7.0.0",
     "gitignore": "^0.6.0"
   },
   "scripts": {
