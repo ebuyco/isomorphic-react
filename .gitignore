@@ -73,8 +73,8 @@ typings/
 .serverless
 
 #node modules
-node_modules
+node_modules/
 
 #text_editor
-.ideas 
+.idea/
 
