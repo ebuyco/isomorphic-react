@@ -3,8 +3,8 @@ import yields from 'express-yields';
 import fs from 'fs-extra';
 import webpack from 'webpack';
 import { argv } from 'optimist';
-import { get } from 'request-promise';
 import { questions, question } from '../data/api-real-url';
+import { get } from 'request-promise';
 import { delay } from 'redux-saga';
 
 const port = process.env.Port || 3000;
@@ -15,9 +15,9 @@ const useLiveData = argv.useLiveData === 'true';
 function * getQuestions(){
     let data;
     if (useLiveData) {
-        data = yield get(questions, {gzip:true});
+        data = yield get(questions,{gzip:true});
     } else {
-        data = yield fs.readfile('./data/mock-questions.json', 'utf-8');
+        data = yield fs.readfile('./data/mock-questions.json', "utf-8');
     }
     return JSON.parse(data);
 }
