@@ -17,7 +17,7 @@ function * getQuestions(){
     if (useLiveData) {
         data = yield get(questions,{gzip:true});
     } else {
-        data = yield fs.readfile('./data/mock-questions.json', "utf-8');
+        data = yield fs.readfile('./data/mock-questions.json', "utf-8");
     }
     return JSON.parse(data);
 }
