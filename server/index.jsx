@@ -19,24 +19,34 @@ function * getQuestions(){
     if (useLiveData) {
         data = yield get(questions,{gzip:true});
     } else {
-        data = yield fs.readfile('./data/mock-questions.json', "utf-8");
+       data = yield fs.readFile('./data/mock-questions.json',"utf-8");
     }
     /* parse the data and return it */
     return JSON.parse(data);
 }
 
 /*handler and routes to manage single data */
-function * getQuestions(question_id) {
+function * getQuestion (question_id) {
     let data;
     if (useLiveData) {
-        data = yield get (question(question_id), {gzip:true,json:true});
-      } else {
+        /**
+         * If live data is used, contact the external API
+         */
+        data = yield get(question(question_id),{gzip:true,json:true});
+    } else {
+        /**
+         * If live data is not used, get the list of mock questions and return the one that
+         * matched the provided ID
+         */
         const questions = yield getQuestions();
         const question = questions.items.find(_question=>_question.question_id == question_id);
+        /**
+         * Create a mock body for the question
+         */
         question.body = `Mock question body: ${question_id}`;
         data = {items:[question]};
-      }
-      return data;
+    }
+    return data;
 }
 
 /* api route to handle this function */
