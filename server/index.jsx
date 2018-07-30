@@ -10,8 +10,10 @@ import { delay } from 'redux-saga';
 const port = process.env.Port || 3000;
 const app = express();
 
+/*get the argument from argv */
 const useLiveData = argv.useLiveData === 'true';
 
+/*get generator data from a function*/
 function * getQuestions(){
     let data;
     if (useLiveData) {
@@ -19,9 +21,11 @@ function * getQuestions(){
     } else {
         data = yield fs.readfile('./data/mock-questions.json', "utf-8");
     }
+    /* parse the data and return it */
     return JSON.parse(data);
 }
 
+/*handler and routes to manage single data */
 function * getQuestions(question_id) {
     let data;
     if (useLiveData) {
@@ -35,6 +39,7 @@ function * getQuestions(question_id) {
       return data;
 }
 
+/* api route to handle this function */
 app.get('/api/questions',function * (req,res){
     const data = yield getQuestions();
     yield delay(150);
