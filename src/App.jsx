@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const AppDisplay = ()=>(
+const AppDisplay = ({test})=>(
     <div>
-        <h1>This is a test </h1>
+        <h1>This is a test {test} </h1>
     </div>
 );
-
-export default AppDisplay;
+const mapStateToProps = (state,ownProps)=>{
+    return {
+        ...state
+    }
+};
+// export default AppDisplay;
+export default connect(mapStateToProps) (AppDisplay);
